@@ -7,4 +7,9 @@
 
 import MapKit
 
-class MKPointAnnotationWithID: MKPointAnnotation, Identifiable {}
+class MKPointAnnotationWithID: MKPointAnnotation {
+    override init() {
+        super.init()
+    }
+    var id = UUID()
+}

@@ -15,8 +15,6 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate, ObservableObject {
 
     init(mapView: MKMapView) {
         self.mapView = mapView
-        super.init()
-        self.mapView.delegate = self
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -29,6 +27,6 @@ class MapViewCoordinator: NSObject, MKMapViewDelegate, ObservableObject {
         let center = mapView.centerCoordinate
         let annotation = MKPointAnnotation()
         annotation.coordinate = center
-        annotations.append(MKPointAnnotationWithID(coordinate: annotation.coordinate))
+        mapView.addAnnotation(annotation)
     }
 }

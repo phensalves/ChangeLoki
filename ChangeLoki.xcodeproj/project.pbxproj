@@ -17,6 +17,7 @@
 		C728B28829AD734A008246F8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28729AD734A008246F8 /* MapView.swift */; };
 		C728B28A29AD7386008246F8 /* MapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28929AD7386008246F8 /* MapViewCoordinator.swift */; };
 		C728B28C29AD74A4008246F8 /* MKPointAnnotationWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28B29AD74A4008246F8 /* MKPointAnnotationWithID.swift */; };
+		C728B28E29AD7DA9008246F8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28D29AD7DA9008246F8 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		C728B28729AD734A008246F8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C728B28929AD7386008246F8 /* MapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCoordinator.swift; sourceTree = "<group>"; };
 		C728B28B29AD74A4008246F8 /* MKPointAnnotationWithID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPointAnnotationWithID.swift; sourceTree = "<group>"; };
+		C728B28D29AD7DA9008246F8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				C728B26129AD63BB008246F8 /* Assets.xcassets */,
 				C728B26329AD63BB008246F8 /* Preview Content */,
 				C728B28929AD7386008246F8 /* MapViewCoordinator.swift */,
+				C728B28D29AD7DA9008246F8 /* LocationManager.swift */,
 			);
 			path = ChangeLoki;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				C728B28A29AD7386008246F8 /* MapViewCoordinator.swift in Sources */,
 				C728B26029AD63B8008246F8 /* ContentView.swift in Sources */,
+				C728B28E29AD7DA9008246F8 /* LocationManager.swift in Sources */,
 				C728B28829AD734A008246F8 /* MapView.swift in Sources */,
 				C728B25E29AD63B8008246F8 /* ChangeLokiApp.swift in Sources */,
 				C728B28C29AD74A4008246F8 /* MKPointAnnotationWithID.swift in Sources */,
@@ -429,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ChangeLoki/Preview Content\"";
+				DEVELOPMENT_TEAM = 43L6UF66S9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
@@ -458,6 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ChangeLoki/Preview Content\"";
+				DEVELOPMENT_TEAM = 43L6UF66S9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";

@@ -15,12 +15,12 @@ struct ContentView: View {
 
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: [annotation].compactMap { $0 }) { annotation in
-            MapPin(coordinate: annotation.coordinate)
+            MapMarker(coordinate: annotation.coordinate)
         }
         .onAppear {
             locationManager.requestAuthorization()
         }
-        .onReceive(locationManager.$location) { location in
+        .onReceive(locationManager.locationPublisher) { location in
             if let location = location {
                 region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
             }
@@ -38,33 +38,5 @@ struct ContentView: View {
         .clipShape(Circle())
         .padding(.trailing)
         , alignment: .bottomTrailing)
-    }
-}
-
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
-
-    @Published var location: CLLocation?
-
-    override init() {
-        super.init()
-
-        locationManager.delegate = self
-    }
-
-    func requestAuthorization() {
-        locationManager.requestWhenInUseAuthorization()
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            self.location = location
-        }
     }
 }
