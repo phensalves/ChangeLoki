@@ -18,6 +18,7 @@
 		C728B28A29AD7386008246F8 /* MapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28929AD7386008246F8 /* MapViewCoordinator.swift */; };
 		C728B28C29AD74A4008246F8 /* MKPointAnnotationWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28B29AD74A4008246F8 /* MKPointAnnotationWithID.swift */; };
 		C728B28E29AD7DA9008246F8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28D29AD7DA9008246F8 /* LocationManager.swift */; };
+		C73C11C029B616DC00B4F75A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C11BF29B616DC00B4F75A /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		C728B28929AD7386008246F8 /* MapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCoordinator.swift; sourceTree = "<group>"; };
 		C728B28B29AD74A4008246F8 /* MKPointAnnotationWithID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPointAnnotationWithID.swift; sourceTree = "<group>"; };
 		C728B28D29AD7DA9008246F8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C73C11BF29B616DC00B4F75A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				C728B26329AD63BB008246F8 /* Preview Content */,
 				C728B28929AD7386008246F8 /* MapViewCoordinator.swift */,
 				C728B28D29AD7DA9008246F8 /* LocationManager.swift */,
+				C73C11BF29B616DC00B4F75A /* SearchBar.swift */,
 			);
 			path = ChangeLoki;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73C11C029B616DC00B4F75A /* SearchBar.swift in Sources */,
 				C728B28A29AD7386008246F8 /* MapViewCoordinator.swift in Sources */,
 				C728B26029AD63B8008246F8 /* ContentView.swift in Sources */,
 				C728B28E29AD7DA9008246F8 /* LocationManager.swift in Sources */,

@@ -10,7 +10,7 @@ import MapKit
 import Combine
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    private let locationManager = CLLocationManager()
+    @Published var locationManager = CLLocationManager()
     private let locationSubject = PassthroughSubject<CLLocation?, Never>()
     var locationPublisher: AnyPublisher<CLLocation?, Never> {
         locationSubject.eraseToAnyPublisher()

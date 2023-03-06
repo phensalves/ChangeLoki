@@ -12,10 +12,47 @@ struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     @State private var annotation: MKPointAnnotation?
-
+    @State private var showingSearch = false
+    @State private var searchQuery = ""
+    @State private var searchCoordinate: CLLocationCoordinate2D?
+    @State private var showingAlert = false
+    
     var body: some View {
-        Map(coordinateRegion: $region, annotationItems: [annotation].compactMap { $0 }) { annotation in
-            MapMarker(coordinate: annotation.coordinate)
+        ZStack {
+            Map(coordinateRegion: $region, annotationItems: [annotation].compactMap { $0 }) { annotation in
+                MapMarker(coordinate: annotation.coordinate)
+            }
+            VStack {
+                SearchBar(text: $searchQuery, onSearch: { coordinates in
+                    searchCoordinate = coordinates
+                    region = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                    if locationManager.locationManager.authorizationStatus == .authorizedWhenInUse && !showingAlert {
+                        showingAlert = true
+                        let alert = UIAlertController(title: "Location Updated", message: "The app will now use the new location for searching.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        UIApplication.shared.connectedScenes.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                    }
+                    showingSearch = false
+                })
+                Spacer()
+            }
+            .padding(.horizontal)
+            .sheet(isPresented: $showingSearch, onDismiss: {
+                if let coordinate = searchCoordinate {
+                    region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                    if locationManager.authorizationStatus == .authorizedWhenInUse && !showingAlert {
+                        showingAlert = true
+                        let alert = UIAlertController(title: "Location Updated", message: "The app will now use the new location for searching.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        UIApplication.shared.connectedScenes.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }, content: {
+                SearchBar(text: $searchQuery) { coordinates in
+                    searchCoordinate = coordinates
+                    showingSearch = false
+                }
+            })
         }
         .onAppear {
             locationManager.requestAuthorization()

@@ -60,6 +60,6 @@ struct MapView: UIViewRepresentable {
             let region = MKCoordinateRegion(center: userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
             parent.region = region
             parent.locationManager.stopUpdatingLocation()
-        }g
+        }
     }
 }
