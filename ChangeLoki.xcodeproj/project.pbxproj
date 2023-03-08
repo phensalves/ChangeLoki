@@ -19,6 +19,14 @@
 		C728B28C29AD74A4008246F8 /* MKPointAnnotationWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28B29AD74A4008246F8 /* MKPointAnnotationWithID.swift */; };
 		C728B28E29AD7DA9008246F8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C728B28D29AD7DA9008246F8 /* LocationManager.swift */; };
 		C73C11C029B616DC00B4F75A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73C11BF29B616DC00B4F75A /* SearchBar.swift */; };
+		C7CB7DEA29B823ED0092DA64 /* ChangeLoki in Resources */ = {isa = PBXBuildFile; fileRef = C7CB7DE929B823ED0092DA64 /* ChangeLoki */; };
+		C7CB7DEB29B823ED0092DA64 /* ChangeLoki in Resources */ = {isa = PBXBuildFile; fileRef = C7CB7DE929B823ED0092DA64 /* ChangeLoki */; };
+		C7CB7DEC29B823ED0092DA64 /* ChangeLoki in Resources */ = {isa = PBXBuildFile; fileRef = C7CB7DE929B823ED0092DA64 /* ChangeLoki */; };
+		C7CB7DEE29B824350092DA64 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB7DED29B824350092DA64 /* ContentViewTests.swift */; };
+		C7CB7DEF29B824350092DA64 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB7DED29B824350092DA64 /* ContentViewTests.swift */; };
+		C7CB7DF029B824350092DA64 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB7DED29B824350092DA64 /* ContentViewTests.swift */; };
+		C7CB7DF329B824B30092DA64 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CB7DF229B824B30092DA64 /* XCTest.framework */; };
+		C7CB7DF429B824B30092DA64 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C7CB7DF229B824B30092DA64 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +46,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C7CB7DF529B824B30092DA64 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C7CB7DF429B824B30092DA64 /* XCTest.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C728B25A29AD63B8008246F8 /* ChangeLoki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChangeLoki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C728B25D29AD63B8008246F8 /* ChangeLokiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLokiApp.swift; sourceTree = "<group>"; };
@@ -55,6 +77,9 @@
 		C728B28D29AD7DA9008246F8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C73C11BF29B616DC00B4F75A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C7AA61FD29B81554009A0389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C7CB7DE929B823ED0092DA64 /* ChangeLoki */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ChangeLoki; sourceTree = "<group>"; };
+		C7CB7DED29B824350092DA64 /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
+		C7CB7DF229B824B30092DA64 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB7DF329B824B30092DA64 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +116,7 @@
 				C728B26D29AD63BB008246F8 /* ChangeLokiTests */,
 				C728B27729AD63BC008246F8 /* ChangeLokiUITests */,
 				C728B25B29AD63B8008246F8 /* Products */,
+				C7CB7DF129B824B20092DA64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +136,8 @@
 				C7AA61FD29B81554009A0389 /* Info.plist */,
 				C728B25D29AD63B8008246F8 /* ChangeLokiApp.swift */,
 				C728B25F29AD63B8008246F8 /* ContentView.swift */,
+				C7CB7DED29B824350092DA64 /* ContentViewTests.swift */,
+				C7CB7DE929B823ED0092DA64 /* ChangeLoki */,
 				C728B28729AD734A008246F8 /* MapView.swift */,
 				C728B26129AD63BB008246F8 /* Assets.xcassets */,
 				C728B26329AD63BB008246F8 /* Preview Content */,
@@ -144,6 +173,14 @@
 			path = ChangeLokiUITests;
 			sourceTree = "<group>";
 		};
+		C7CB7DF129B824B20092DA64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB7DF229B824B30092DA64 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,6 +191,7 @@
 				C728B25629AD63B8008246F8 /* Sources */,
 				C728B25729AD63B8008246F8 /* Frameworks */,
 				C728B25829AD63B8008246F8 /* Resources */,
+				C7CB7DF529B824B30092DA64 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB7DEA29B823ED0092DA64 /* ChangeLoki in Resources */,
 				C728B26529AD63BB008246F8 /* Preview Assets.xcassets in Resources */,
 				C728B26229AD63BB008246F8 /* Assets.xcassets in Resources */,
 			);
@@ -257,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB7DEB29B823ED0092DA64 /* ChangeLoki in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB7DEC29B823ED0092DA64 /* ChangeLoki in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +317,7 @@
 			files = (
 				C73C11C029B616DC00B4F75A /* SearchBar.swift in Sources */,
 				C728B28A29AD7386008246F8 /* MapViewCoordinator.swift in Sources */,
+				C7CB7DEE29B824350092DA64 /* ContentViewTests.swift in Sources */,
 				C728B26029AD63B8008246F8 /* ContentView.swift in Sources */,
 				C728B28E29AD7DA9008246F8 /* LocationManager.swift in Sources */,
 				C728B28829AD734A008246F8 /* MapView.swift in Sources */,
@@ -288,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB7DEF29B824350092DA64 /* ContentViewTests.swift in Sources */,
 				C728B26F29AD63BC008246F8 /* ChangeLokiTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7CB7DF029B824350092DA64 /* ContentViewTests.swift in Sources */,
 				C728B27929AD63BC008246F8 /* ChangeLokiUITests.swift in Sources */,
 				C728B27B29AD63BC008246F8 /* ChangeLokiUITestsLaunchTests.swift in Sources */,
 			);
