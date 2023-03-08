@@ -21,8 +21,27 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+
+    func requestAuthorization() {
         locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse:
+            startUpdatingLocation()
+        default:
+            break
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -32,14 +51,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.region = region
         
         // Stop updating location after receiving the first location update
-        manager.stopUpdatingLocation()
-    }
-    
-    func requestAuthorization() {
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
-    func stopUpdatingLocation() {
-        locationManager.stopUpdatingLocation()
+        stopUpdatingLocation()
     }
 }
