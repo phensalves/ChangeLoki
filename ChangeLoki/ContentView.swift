@@ -7,6 +7,7 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import Combine
 
 struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
@@ -16,6 +17,7 @@ struct ContentView: View {
     @State private var searchQuery = ""
     @State private var searchCoordinate: CLLocationCoordinate2D?
     @State private var showingAlert = false
+    @State private var cancellable: AnyCancellable?
     
     var body: some View {
         ZStack {
@@ -23,63 +25,58 @@ struct ContentView: View {
                 MapMarker(coordinate: annotation.coordinate)
             }
             VStack {
-                SearchBar(text: $searchQuery, onSearch: { coordinates in
-                    searchCoordinate = coordinates
-                    region = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-                    if locationManager.locationManager.authorizationStatus == .authorizedWhenInUse && !showingAlert {
-                        showingAlert = true
-                        let alert = UIAlertController(title: "Location Updated", message: "The app will now use the new location for searching.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-                            windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController?.present(alert, animated: true, completion: nil)
-                        }
-                    }
-                    showingSearch = false
-                })
+                SearchBar(text: $searchQuery, onSearch: onSearch)
                 Spacer()
             }
             .padding(.horizontal)
-            .sheet(isPresented: $showingSearch, onDismiss: {
-                if let coordinate = searchCoordinate {
-                    region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-                    if locationManager.locationManager.authorizationStatus == .authorizedWhenInUse && !showingAlert {
-                        showingAlert = true
-                        let alert = UIAlertController(title: "Location Updated", message: "The app will now use the new location for searching.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                            if let rootViewController = windowScene.windows.first?.rootViewController {
-                                rootViewController.present(alert, animated: true, completion: nil)
-                            }
-                        }
-                    }
-                }
-            }, content: {
-                SearchBar(text: $searchQuery) { coordinates in
-                    searchCoordinate = coordinates
-                    showingSearch = false
-                }
+            .sheet(isPresented: $showingSearch, onDismiss: onDismiss, content: {
+                SearchBar(text: $searchQuery, onSearch: onSearch)
             })
         }
         .onAppear {
             locationManager.requestAuthorization()
+            cancellable = locationManager.$location
+                .compactMap { $0 }
+                .sink { [weak self] location in
+                    guard let self = self else { return }
+                    self.region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                    self.addAnnotation(for: location)
+                    self.locationManager.stopUpdatingLocation()
+                }
         }
-        .onReceive(locationManager.locationPublisher) { location in
-            if let location = location {
-                region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-            }
-        }
-        .overlay(Button("Drop Pin") {
-            let newAnnotation = MKPointAnnotation()
-            newAnnotation.coordinate = region.center
-            annotation = newAnnotation
-
-            let location = CLLocation(latitude: newAnnotation.coordinate.latitude, longitude: newAnnotation.coordinate.longitude)
-            print(location)
+        .overlay(dropPinButton, alignment: .bottomTrailing)
+    }
+    
+    private var dropPinButton: some View {
+        Button(action: dropPin) {
+            Image(systemName: "mappin.circle.fill")
+                .resizable()
+                .frame(width: 44, height: 44)
         }
         .padding()
         .background(Color.white.opacity(0.8))
         .clipShape(Circle())
         .padding(.trailing)
-        , alignment: .bottomTrailing)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+    }
+    
+    private func dropPin() {
+        let newAnnotation = MKPointAnnotation()
+        newAnnotation.coordinate = region.center
+        annotation = newAnnotation
+    }
+    
+    private func onSearch(_ coordinates: CLLocationCoordinate2D) {
+        searchCoordinate = coordinates
+        region = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        showAlertIfNeeded()
+        showingSearch = false
+    }
+    
+    private func onDismiss() {
+        if let coordinate = searchCoordinate {
+            region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            showAlertIfNeeded()
+        }
     }
 }
