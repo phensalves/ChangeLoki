@@ -30,7 +30,9 @@ struct ContentView: View {
                         showingAlert = true
                         let alert = UIAlertController(title: "Location Updated", message: "The app will now use the new location for searching.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        UIApplication.shared.connectedScenes.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                        if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                            windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController?.present(alert, animated: true, completion: nil)
+                        }
                     }
                     showingSearch = false
                 })
@@ -40,11 +42,15 @@ struct ContentView: View {
             .sheet(isPresented: $showingSearch, onDismiss: {
                 if let coordinate = searchCoordinate {
                     region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-                    if locationManager.authorizationStatus == .authorizedWhenInUse && !showingAlert {
+                    if locationManager.locationManager.authorizationStatus == .authorizedWhenInUse && !showingAlert {
                         showingAlert = true
                         let alert = UIAlertController(title: "Location Updated", message: "The app will now use the new location for searching.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        UIApplication.shared.connectedScenes.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                            if let rootViewController = windowScene.windows.first?.rootViewController {
+                                rootViewController.present(alert, animated: true, completion: nil)
+                            }
+                        }
                     }
                 }
             }, content: {
