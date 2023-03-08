@@ -1,7 +1,7 @@
 ChangeLoki
 ==========
 
-![Pedro_Alves_an_iOS_app_logo_in_landscape_mode_for_README_in_git_d09905a9-95ea-4767-a46a-1e93286de1c4](https://user-images.githubusercontent.com/10948254/223725162-e514c10b-5bfc-4578-b1ef-e044628ec0b1.png)
+![Change Loki-4](https://user-images.githubusercontent.com/10948254/223744366-8638850d-c8c3-47c0-ac0e-8e6b091a0f3d.png)
 
 
 ChangeLoki is a simple iOS app that allows users to drop a pin on a map and search for a location. The app uses MapKit and CoreLocation frameworks.
